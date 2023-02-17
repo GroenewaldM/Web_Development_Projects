@@ -1,0 +1,31 @@
+{% extends "users/layout.html" %}
+
+{% block body %}
+
+    {% if message %}
+
+        <div>{{message}}</div>
+    
+    {% endif %}
+
+    <form action="{% url 'login' %}" method="post">
+
+        {% csrf_token %}
+
+        <select name="passenger">
+
+            {% for passenger in non_passengers %}
+                <option value="{{ passenger.id }}"> {{ passenger }}</option>
+            {% endfor %}
+
+        </select>
+
+        <input type="text" name="username" placeholder="Usermane">
+
+        <input type="password" name="password" placeholder="Password">
+
+        <input type="submit" value="Login">
+
+    </form>
+
+{% endblock %}
